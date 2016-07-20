@@ -1,0 +1,27 @@
+ForegroundColour = 230,230,230
+BackgroundColour = 28,28,28
+Transparency     = low
+Columns          = 140
+Rows             = 40
+Term             = xterm-256color
+Font             = Consolas
+CursorType       = line
+CursorBlinks     = yes
+FontSmoothing    = full
+ScrollbackLines  = 100000
+
+Black           = 0,0,0
+Red             = 191,0,0
+Green           = 0,191,0
+Yellow          = 191,191,0
+Blue            = 30,30,201
+Magenta         = 191,0,191
+Cyan            = 0,191,191
+White           = 191,191,191
+BoldBlack       = 64,64,64
+BoldRed         = 255,64,64
+BoldGreen       = 64,255,64
+BoldYellow      = 255,255,64
+BoldBlue        = 96,96,255
+BoldMagenta     = 255,64,255
+BoldCyan        = 64,255,255
