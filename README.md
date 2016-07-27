@@ -22,6 +22,7 @@ Below is a list of packages/components/settings cygwin installs (if not availabl
 - oh-my-zsh
 - pip
 - pla
+- fixlinks
 
 ## What does it configure
 - Replaces your .minttyrc with a clear theme
