@@ -38,6 +38,7 @@ echo
 
 # Installing pip
 echo 'Step 4, installing pip & pla...'
+
 apt-cyg install python > /dev/null
 if [ -f /usr/bin/pip ]; then
     echo 'Pip already installed.'
@@ -45,10 +46,16 @@ else
   wget -qO /tmp/pip_installer.py https://bootstrap.pypa.io/get-pip.py
   python /tmp/pip_installer.py
 fi
+echo
+
 if [ -f /usr/bin/pla ]; then
     echo 'Pla already installed.'
 else
-  pip install pla
+  if uname -a | grep "i686"; then
+      echo 'Skiping pla installation due to unsuported 32-bits cygwin'
+  else
+      pip install pla
+  fi
 fi
 echo
 
