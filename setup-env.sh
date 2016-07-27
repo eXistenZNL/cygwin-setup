@@ -31,13 +31,41 @@ fi
 echo
 
 # Install some base packages
-echo "Step 3, installing some base packages..."
+echo "Step 3, installing some base packages available in apt-cyg..."
 apt-cyg install git vim zsh curl wget > /dev/null
 echo 'Done.'
 echo
 
+# Installing pip
+echo 'Step 4, installing pip & pla...'
+apt-cyg install python > /dev/null
+if [ -f /usr/bin/pip ]; then
+    echo 'Pip already installed.'
+else
+  wget -qO /tmp/pip_installer.py https://bootstrap.pypa.io/get-pip.py
+  python /tmp/pip_installer.py
+fi
+if [ -f /usr/bin/pla ]; then
+    echo 'Pla already installed.'
+else
+  pip install pla
+fi
+echo
+
+# Installing Composer
+echo 'Step 5, installing Composer and requirements...'
+apt-cyg install php php-json php-phar php-curl php-iconv php-mbstring > /dev/null
+if [ -f /usr/local/bin/composer ]; then
+    echo 'Already installed.'
+else
+  wget https://raw.githubusercontent.com/composer/getcomposer.org/1b137f8bf6db3e79a38a5bc45324414a6b1f9df2/web/installer -O - -q | php --
+  mv composer.phar /usr/local/bin/composer
+  chmod +x /usr/local/bin/composer
+fi
+echo
+
 # Installing Oh-My-ZSH
-echo 'Step 4, installing Oh-My-zsh...'
+echo 'Step 6, installing Oh-My-zsh...'
 if [ -d ~/.oh-my-zsh ]; then
     echo 'Already installed.'
 else
@@ -46,19 +74,19 @@ fi
 echo
 
 # Grabbing a sane Mintty configuration
-echo Step 5, configuring Mintty...
+echo Step 7, configuring Mintty...
 wget -qO ~/.minttyrc https://raw.githubusercontent.com/eXistenZNL/cygwin-setup/master/.minttyrc
 echo 'Done.'
 echo
 
 # Configure Oh-My-ZSH
-echo 'Step 6, configuring Oh-My-zsh...'
+echo 'Step 8, configuring Oh-My-zsh...'
 sed -i 's/ZSH_THEME=.*/ZSH_THEME=bira/' ~/.zshrc
 echo "Done."
 echo
 
 # Creating pubkey
-echo 'Step 7, optionally creating a pubkey...'
+echo 'Step 9, optionally creating a pubkey...'
 if [ -f ~/.ssh/$USERNAME ]; then
     echo "A pubkey with the filename /.ssh/$USERNAME already exists, skipping creation..."
 else
