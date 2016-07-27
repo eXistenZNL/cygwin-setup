@@ -18,7 +18,6 @@ Below is a list of packages/components/settings cygwin installs (if not availabl
 - zsh
 - curl
 - php
-- nodejs
 - oh-my-zsh
 - pip
 - pla
