@@ -1,0 +1,67 @@
+#!/bin/bash
+# ----------------------------------------------------------
+# Fix the symlinks when on a Windows system
+#
+# On the Windows system the symlinks are not processed
+# when checking out from Git. This script tries to find
+# all symlinks in the project and applies the Windows MKLINK
+# command.
+#
+# Fixlinks will recursively loop through all submodules and
+# process symlinks there as well.
+#
+# Make sure that before you check out a project you have the
+# git config option core.symlinks set to false!
+#
+# Author: Nick de Groot
+# Author: Stefan van Essen
+# ----------------------------------------------------------
+
+function _fixlinks {
+
+    # Get all files/paths that are assumed as symlink
+    dn=$(git ls-files -s | awk '/120000/{print $4}')
+
+    for i in $dn
+    do
+	    if [ -h $i ]; then
+		    if [ -d $i ]; then
+			    echo "  Dir: $i already linked"
+    		else
+	    		echo "  File: $i already linked"
+    		fi
+    	else
+	    	if [ -f $i ]; then
+		    	contents=$(cat $i)
+
+    			option=""
+
+	    		if [ -d "$i/../$contents" ]; then
+		    		option="/D"
+    			fi
+
+	    		# Remove the file containing the symlink
+	    		if [ -f $i ]; then
+		    		rm $i
+		    	fi
+
+			    file=${i//\//\\}
+    			contents=${contents//\//\\}
+	    		#echo "mklink $option $file $contents"
+		    	/cygdrive/c/Windows/system32/cmd.exe /c "mklink $option $file $contents"
+
+    			# Mark changes as unchanged
+	    		git update-index --assume-unchanged $i
+    		else
+	    		if [ -d $i ]; then
+		    		echo "  Dir: $i does not exist!"
+			    else
+				    echo "  File: $i does not exist!"
+    			fi
+    		fi
+    	fi
+    done
+}
+
+_fixlinks
+git submodule foreach $0
