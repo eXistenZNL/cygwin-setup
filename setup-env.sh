@@ -11,7 +11,7 @@ echo "Step 1, installing apt-cyg... "
 if [ -f /usr/local/bin/apt-cyg ]; then
     echo 'Already installed.'
 else
-    wget -O /usr/local/bin/apt-cyg https://raw.githubusercontent.com/transcode-open/apt-cyg/master/apt-cyg
+    lynx -dump https://raw.githubusercontent.com/transcode-open/apt-cyg/master/apt-cyg > /usr/local/bin/apt-cyg
     chmod +x /usr/local/bin/apt-cyg
     echo 'Done.'
 fi
@@ -101,7 +101,7 @@ echo 'Step 9, configuring Oh-My-zsh and GIT...'
 sed -i 's/ZSH_THEME=.*/ZSH_THEME=bira/' ~/.zshrc
 git config --global color.diff auto
 git config --global color.ui auto
-git config --global core.symlinks falsex
+git config --global core.symlinks false
 echo "Done."
 echo
 
