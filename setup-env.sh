@@ -114,7 +114,7 @@ else
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         ssh-keygen -t rsa -b 4096 -C "$USERNAME" -f ~/.ssh/$USERNAME
-        grep -q 'keychain' ~/.zshrc || echo "eval \`keychain ~/.ssh/$USERNAME\`" >> ~/.zshrc
+        grep -q 'keychain' ~/.zshrc || echo "eval \`keychain --eval ~/.ssh/$USERNAME\`" >> ~/.zshrc
     else
         echo 'Assuming you already have a keypair at hand.'
         echo 'Manually put your SSH keys in ~/.ssh, and add the following to ~/.zshrc:'
