@@ -101,7 +101,7 @@ echo 'Step 9, configuring Oh-My-zsh and GIT...'
 sed -i 's/ZSH_THEME=.*/ZSH_THEME=bira/' ~/.zshrc
 git config --global color.diff auto
 git config --global color.ui auto
-git config --global core.symlinks falsex
+git config --global core.symlinks false
 echo "Done."
 echo
 
