@@ -32,7 +32,7 @@ echo
 
 # Install some base packages
 echo "Step 3, installing some base packages available in apt-cyg..."
-apt-cyg install git vim zsh curl wget > /dev/null
+apt-cyg install git vim zsh curl wget unzip mingw64-i686-iso-codes > /dev/null
 echo 'Done.'
 echo
 
@@ -61,7 +61,7 @@ echo
 
 # Installing Composer
 echo 'Step 5, installing Composer and requirements...'
-apt-cyg install php php-json php-phar php-curl php-iconv php-mbstring > /dev/null
+apt-cyg install php php-json php-phar php-ctype php-curl php-iconv php-mbstring > /dev/null
 if [ -f /usr/local/bin/composer ]; then
     echo 'Already installed.'
 else
@@ -97,8 +97,11 @@ echo 'Done.'
 echo
 
 # Configure Oh-My-ZSH
-echo 'Step 9, configuring Oh-My-zsh...'
+echo 'Step 9, configuring Oh-My-zsh and GIT...'
 sed -i 's/ZSH_THEME=.*/ZSH_THEME=bira/' ~/.zshrc
+git config --global color.diff auto
+git config --global color.ui auto
+git config --global core.symlinks falsex
 echo "Done."
 echo
 
