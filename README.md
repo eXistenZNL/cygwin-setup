@@ -27,3 +27,12 @@ Below is a list of packages/components/settings cygwin installs (if not availabl
 - Replaces your .minttyrc with a clear theme
 - Configures oh-my-zsh bira theme
 - Optionally generates a SSH keypair
+
+## Troubleshooting
+
+<dl>
+  <dt>Unexpected ending on line X</dt>
+  <dd>
+  There is probably something wront with your line endings. Ensure the setup-env is saved in Unix format. You can use `dos2unix` or saving the file in Unix format using a text editor.
+  </dd>
+</dl>
