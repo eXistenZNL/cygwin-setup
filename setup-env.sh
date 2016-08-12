@@ -118,7 +118,7 @@ else
     else
         echo 'Assuming you already have a keypair at hand.'
         echo 'Manually put your SSH keys in ~/.ssh, and add the following to ~/.zshrc:'
-        echo 'eval \`keychain ~/.ssh/yourkey\`'
+        echo 'eval \`keychain --eval ~/.ssh/yourkey\`'
         echo "This will start keychain when starting the Cygwin asks for your key's password only once."
     fi
 fi
