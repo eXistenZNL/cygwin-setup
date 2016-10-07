@@ -19,7 +19,9 @@ echo
 
 # Install some base packages
 echo "Step 2, installing some base packages available in apt-cyg..."
-apt-cyg install git vim zsh curl wget unzip mingw64-i686-iso-codes > /dev/null
+# Install wget first to prevent excessive "using lynx as fallback messages"
+apt-cyg install wget
+apt-cyg install git vim zsh curl unzip mingw64-i686-iso-codes > /dev/null
 echo 'Done.'
 echo
 
