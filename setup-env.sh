@@ -17,8 +17,14 @@ else
 fi
 echo
 
+# Install some base packages
+echo "Step 2, installing some base packages available in apt-cyg..."
+apt-cyg install git vim zsh curl wget unzip mingw64-i686-iso-codes > /dev/null
+echo 'Done.'
+echo
+
 # Install keychain, apt-cyg gives an old version which is no longer working so we grab a newer one from GitHub.
-echo "Step 2, installing keychain... "
+echo "Step 3, installing keychain... "
 if [ -f /usr/local/bin/keychain ]; then
     echo 'Already installed.'
 else
@@ -28,12 +34,6 @@ else
     chmod +x /usr/local/bin/keychain
     echo 'Done.'
 fi
-echo
-
-# Install some base packages
-echo "Step 3, installing some base packages available in apt-cyg..."
-apt-cyg install git vim zsh curl wget unzip mingw64-i686-iso-codes > /dev/null
-echo 'Done.'
 echo
 
 # Installing pip
