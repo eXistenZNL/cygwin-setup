@@ -3,7 +3,7 @@ A shell script that installs and configures your Cygwin environment.
 
 ## How to use
 1. [Install Cygwin](https://cygwin.com/install.html), use 64 bits for optimal support
-1. During the cygwin installation, make sure to enable the installation of lynx
+1. During the cygwin installation, make sure to enable the installation of wget
 1. Clone this repository
 1. Execute the `setup-env.sh` with Cygwin
 1. After cygwin boots oh-my-zsh, please `exit` it to allow the script to configure oh-my-zsh
