@@ -6,19 +6,28 @@ echo "Starting Cygwin environment config..."
 echo "---------------------"
 echo
 
+# The readme requires installing wget, without the wget package we can't start-up
+hash wget 2>/dev/null || { echo >&2 "wget is not found..."; exit 1; }
+
 # Install apt-cyg, the apt-get like package manager for cygwin
 echo "Step 1, installing apt-cyg... "
 if [ -f /usr/local/bin/apt-cyg ]; then
     echo 'Already installed.'
 else
-    lynx -dump https://raw.githubusercontent.com/transcode-open/apt-cyg/master/apt-cyg > /usr/local/bin/apt-cyg
+    wget -qO /usr/local/bin/apt-cyg https://raw.githubusercontent.com/transcode-open/apt-cyg/master/apt-cyg
     chmod +x /usr/local/bin/apt-cyg
     echo 'Done.'
 fi
 echo
 
+# Install some base packages
+echo "Step 2, installing some base packages available in apt-cyg..."
+apt-cyg install git vim zsh curl unzip mingw64-i686-iso-codes > /dev/null
+echo 'Done.'
+echo
+
 # Install keychain, apt-cyg gives an old version which is no longer working so we grab a newer one from GitHub.
-echo "Step 2, installing keychain... "
+echo "Step 3, installing keychain... "
 if [ -f /usr/local/bin/keychain ]; then
     echo 'Already installed.'
 else
@@ -28,12 +37,6 @@ else
     chmod +x /usr/local/bin/keychain
     echo 'Done.'
 fi
-echo
-
-# Install some base packages
-echo "Step 3, installing some base packages available in apt-cyg..."
-apt-cyg install git vim zsh curl wget unzip mingw64-i686-iso-codes > /dev/null
-echo 'Done.'
 echo
 
 # Installing pip
